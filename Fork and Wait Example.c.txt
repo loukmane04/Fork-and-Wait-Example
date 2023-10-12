@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+    pid_t pid_f;
+    pid_f = fork();
+
+    if (pid_f == -1) {
+        printf("Fork failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (pid_f == 0) {
+        printf("I am the child\n");
+    } else {
+        wait(NULL);
+        printf("I am the parent\n");
+    }
+
+    return 0;
+}
